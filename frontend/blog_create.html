@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #333; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; }
+        input[type="text"], textarea {
+            width: 100%; padding: 10px; margin-bottom: 16px;
+            border: 1px solid #ccc; border-radius: 4px;
+            font-size: 15px; box-sizing: border-box;
+        }
+        textarea { height: 150px; resize: vertical; }
+        .btn-submit { background-color: #43a047; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
+        .btn-back { display: inline-block; margin-top: 12px; color: #555; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <h1>Create New Blog</h1>
+
+    <form action="/blogs/create" method="POST">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter blog title" required>
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="Write your blog content..." required></textarea>
+
+        <button type="submit" class="btn-submit">Create Blog</button>
+    </form>
+
+    <a class="btn-back" href="/blogs">← Back to all blogs</a>
+
+</body>
+</html>

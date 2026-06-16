@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Blog</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #333; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; }
+        input[type="text"], textarea {
+            width: 100%; padding: 10px; margin-bottom: 16px;
+            border: 1px solid #ccc; border-radius: 4px;
+            font-size: 15px; box-sizing: border-box;
+        }
+        textarea { height: 150px; resize: vertical; }
+        .btn-submit { background-color: #f0a500; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
+        .btn-back { display: inline-block; margin-top: 12px; color: #555; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <h1>Update Blog</h1>
+
+    <!-- No form action — submit handled by fetch() to send PUT request -->
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="{{ blog.title }}" required>
+
+    <label for="content">Content</label>
+    <textarea id="content" name="content" required>{{ blog.content }}</textarea>
+
+    <button class="btn-submit" onclick="updateBlog({{ blog.id }})">Update Blog</button>
+
+    <br>
+    <a class="btn-back" href="/blogs">← Back to all blogs</a>
+
+    <script>
+        async function updateBlog(id) {
+            const title = document.getElementById("title").value.trim();
+            const content = document.getElementById("content").value.trim();
+
+            if (!title || !content) {
+                alert("Title and content are required.");
+                return;
+            }
+
+            const res = await fetch(`/blogs/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title, content })
+            });
+
+            if (res.ok) {
+                window.location.href = "/blogs";
+            } else {
+                alert("Failed to update blog.");
+            }
+        }
+    </script>
+
+</body>
+</html>
