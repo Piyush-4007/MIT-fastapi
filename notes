@@ -1,0 +1,6 @@
+http methods
+get receiving the data from the db (flipkart)
+
+post when sending the data to db (signing up )
+put we are changing or updating the data 
+patch partial data change
